@@ -194,7 +194,7 @@ Additional coursework artefacts in the repo root (not required to run the site):
 
 ## Team & disclaimer
 
-© 2026 GlowLab · Imperial College London, Group Project  
+© 2026 Terry Huang, Alex Nikos, Hafiz Bin Ahmad Jaafar, Kaiming Guo, Kassandra QUAN, Riddhima Tanwar, Tianne Lee, Xiyu Zhang
 
 GlowLab is a **student demonstration**. It is not affiliated with Unilever, Nutrafol, OLLY, Liquid I.V. or Boots. Supplement claims are simplified for UX; users should follow product labels and consult healthcare professionals where appropriate. Do not commit real API keys or SMTP credentials; use `backend/.env` locally (see `.env.example`).
 
