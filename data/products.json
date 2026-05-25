@@ -1,0 +1,467 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-17",
+  "products": [
+    {
+      "id": "nutrafol-women-hair-growth",
+      "name": "Nutrafol Women Hair Growth Nutraceutical",
+      "brand": "Nutrafol",
+      "price": 79,
+      "currency": "GBP",
+      "image": "individual_photos/Nutrafol_Hair_Growth.png",
+      "category": "hair support",
+      "goals": [
+        "hair",
+        "hair growth",
+        "hair shedding",
+        "nails",
+        "strength"
+      ],
+      "description": "Main hair-growth support for women 18–44.",
+      "why_included": "Main hair-growth product for women 18–44, positioned around hair thinning linked to stress, lifestyle, and nutrition.",
+      "source_url": "https://nutrafol.com/hair/women/product/core/women/",
+      "key_ingredients": [
+        "marine collagen peptides",
+        "ashwagandha",
+        "saw palmetto",
+        "curcumin"
+      ],
+      "sensitivities": [
+        "possible fish-derived collagen concern",
+        "botanical sensitivity",
+        "not suitable for all dietary preferences"
+      ],
+      "routine_note": "4 capsules once daily with a meal.",
+      "routine_time": [
+        "evening"
+      ],
+      "bundle_ids": [
+        "hair"
+      ]
+    },
+    {
+      "id": "nutrafol-clear-skin",
+      "name": "Nutrafol Clear Skin Nutraceutical",
+      "brand": "Nutrafol",
+      "price": 68,
+      "currency": "GBP",
+      "image": "individual_photos/Nutrafol_Clear_Skin.png",
+      "category": "skin support",
+      "goals": [
+        "skin",
+        "breakouts",
+        "complexion",
+        "glow",
+        "dullness"
+      ],
+      "description": "Inside-out support for breakouts and dullness.",
+      "why_included": "Skin-focused product targeting root causes of breakouts, including stress, hormones, microbiome, immune function, metabolism, and lifestyle.",
+      "source_url": "https://nutrafol.com/skin/women/product/core/",
+      "key_ingredients": [
+        "botanical / internal skin-support blend"
+      ],
+      "sensitivities": [
+        "botanical sensitivity",
+        "skin-support supplement sensitivity"
+      ],
+      "routine_note": "4 capsules once daily with a meal.",
+      "routine_time": [
+        "morning"
+      ],
+      "bundle_ids": [
+        "skin"
+      ]
+    },
+    {
+      "id": "nutrafol-stress-adaptogen",
+      "name": "Nutrafol Stress Adaptogen Booster",
+      "brand": "Nutrafol",
+      "price": 38,
+      "currency": "GBP",
+      "image": "individual_photos/Nutrafol_Stress_Adaptogen.png",
+      "category": "stress support",
+      "goals": [
+        "stress",
+        "calm",
+        "mental overload",
+        "reset"
+      ],
+      "description": "Ashwagandha adaptogen for stress balance.",
+      "why_included": "Stress-support booster; Nutrafol describes ashwagandha as an adaptogen used to help balance stress hormones.",
+      "source_url": "https://nutrafol.com/hair/women/product/booster/stress-adaptogen/",
+      "key_ingredients": [
+        "ashwagandha",
+        "adaptogen blend"
+      ],
+      "sensitivities": [
+        "adaptogen sensitivity",
+        "botanical sensitivity"
+      ],
+      "routine_note": "2 capsules once daily with a meal.",
+      "routine_time": [
+        "morning"
+      ],
+      "bundle_ids": [
+        "stress"
+      ]
+    },
+    {
+      "id": "nutrafol-b-energized",
+      "name": "Nutrafol B-Energized Booster",
+      "brand": "Nutrafol",
+      "price": 38,
+      "currency": "GBP",
+      "image": "individual_photos/Nutrafol_B-Energized.png",
+      "category": "energy support",
+      "goals": [
+        "energy",
+        "focus",
+        "metabolism",
+        "morning momentum"
+      ],
+      "description": "B-vitamin metabolism and energy support.",
+      "why_included": "Energy/metabolism-support booster; Nutrafol lists B-Energized as a metabolism extra-support booster.",
+      "source_url": "https://nutrafol.com/hair/women/product/booster/energy/",
+      "key_ingredients": [
+        "B vitamins"
+      ],
+      "sensitivities": [
+        "B vitamin sensitivity"
+      ],
+      "routine_note": "1 capsule once daily with a meal.",
+      "routine_time": [
+        "morning"
+      ],
+      "bundle_ids": [
+        "energy"
+      ]
+    },
+    {
+      "id": "nutrafol-womens-balance",
+      "name": "Nutrafol Women's Balance",
+      "brand": "Nutrafol",
+      "price": 79,
+      "currency": "GBP",
+      "image": "individual_photos/Nutrafol_Women_Balance.png",
+      "category": "hormone / life-stage support",
+      "goals": [
+        "hormone",
+        "cycle",
+        "life-stage",
+        "perimenopause",
+        "menopause",
+        "hair"
+      ],
+      "description": "Hormone-transition hair support for women 45+.",
+      "why_included": "Hormone-transition hair support for women 45+, especially menopause/perimenopause-related hair thinning.",
+      "source_url": "https://nutrafol.com/hair/women/product/core/balance/",
+      "key_ingredients": [
+        "marine collagen peptides"
+      ],
+      "sensitivities": [
+        "possible fish-derived collagen concern",
+        "animal-derived ingredient concern"
+      ],
+      "routine_note": "4 capsules once daily with a meal.",
+      "routine_time": [
+        "evening"
+      ],
+      "bundle_ids": [
+        "hormone"
+      ]
+    },
+    {
+      "id": "olly-womens-multi",
+      "name": "OLLY Women's Multi",
+      "brand": "OLLY",
+      "price": 15,
+      "currency": "GBP",
+      "image": "individual_photos/OLLY_Women_Multi.png",
+      "category": "daily multivitamin",
+      "goals": [
+        "daily foundation",
+        "hair",
+        "nutrition",
+        "energy",
+        "women's wellness"
+      ],
+      "description": "Daily women's multivitamin with biotin and B vitamins.",
+      "why_included": "General women’s daily supplement with vitamins A, C, D, E, B vitamins, biotin, and folic acid.",
+      "source_url": "https://www.olly.com/products/womens-multi?srsltid=AfmBOopBrJBHTXISi2KK_BDOiGwaI_sx9-ECryC16pLGWMx5ytLrY1Y2",
+      "key_ingredients": [
+        "vitamins A, C, D, E",
+        "B vitamins",
+        "biotin",
+        "folic acid"
+      ],
+      "sensitivities": [
+        "animal gelatin"
+      ],
+      "routine_note": "2 gummies daily.",
+      "routine_time": [
+        "morning"
+      ],
+      "bundle_ids": [
+        "hair"
+      ]
+    },
+    {
+      "id": "olly-glowing-skin",
+      "name": "OLLY Glowing Skin",
+      "brand": "OLLY",
+      "price": 15,
+      "currency": "GBP",
+      "image": "individual_photos/OLLY_Glowing_Skin.png",
+      "category": "beauty supplement",
+      "goals": [
+        "skin",
+        "glow",
+        "hydration",
+        "beauty from within"
+      ],
+      "description": "Hyaluronic acid, collagen, and sea buckthorn.",
+      "why_included": "Beauty supplement using hyaluronic acid, collagen peptides, and sea buckthorn.",
+      "source_url": "https://www.olly.com/products/glowing-skin?srsltid=AfmBOoqKxSuiCohmGpOSiJpi66gmsQJCH6uE-3QBbbMpXwYCMsixdomv",
+      "key_ingredients": [
+        "hyaluronic acid",
+        "collagen peptides",
+        "sea buckthorn"
+      ],
+      "sensitivities": [
+        "gelatin",
+        "collagen peptides",
+        "animal-derived ingredient concern"
+      ],
+      "routine_note": "2 gummies daily.",
+      "routine_time": [
+        "evening"
+      ],
+      "bundle_ids": [
+        "skin"
+      ]
+    },
+    {
+      "id": "olly-goodbye-stress",
+      "name": "OLLY Goodbye Stress",
+      "brand": "OLLY",
+      "price": 15,
+      "currency": "GBP",
+      "image": "individual_photos/OLLY_Goodbye_Stress.png",
+      "category": "stress support",
+      "goals": [
+        "stress",
+        "calm",
+        "mental overload",
+        "relaxation"
+      ],
+      "description": "GABA, L-theanine, and lemon balm gummies.",
+      "why_included": "Stress-support gummy with GABA, L-theanine, and lemon balm.",
+      "source_url": "https://www.olly.com/products/goodbye-stress?srsltid=AfmBOoprSyqWHe8yLXVrHwXe4jk4XQ6sXq1q3P2yY7lqcROnJHJnm-gs",
+      "key_ingredients": [
+        "GABA",
+        "L-theanine",
+        "lemon balm"
+      ],
+      "sensitivities": [
+        "gelatin",
+        "calming ingredient sensitivity",
+        "botanical sensitivity"
+      ],
+      "routine_note": "2 gummies daily.",
+      "routine_time": [
+        "afternoon"
+      ],
+      "bundle_ids": [
+        "stress"
+      ]
+    },
+    {
+      "id": "olly-daily-energy",
+      "name": "OLLY Extra Strength Daily Energy",
+      "brand": "OLLY",
+      "price": 15,
+      "currency": "GBP",
+      "image": "individual_photos/OLLY_Daily_Energy.png",
+      "category": "energy support",
+      "goals": [
+        "energy",
+        "focus",
+        "morning momentum",
+        "work",
+        "study"
+      ],
+      "description": "B12, goji berry, and CoQ10 for daily energy.",
+      "why_included": "Energy-support gummy with vitamin B12, goji berry, and CoQ10.",
+      "source_url": "https://www.olly.com/products/extra-strength-daily-energy?srsltid=AfmBOophs-9Y_WlmrW3rrnsgHHg-GEH9HeapY-C8ySGn8SY2UjqZdNC8",
+      "key_ingredients": [
+        "vitamin B12",
+        "goji berry",
+        "CoQ10",
+        "B vitamins"
+      ],
+      "sensitivities": [
+        "gelatin",
+        "energy-support ingredient sensitivity"
+      ],
+      "routine_note": "2 gummies daily.",
+      "routine_time": [
+        "morning"
+      ],
+      "bundle_ids": [
+        "energy"
+      ]
+    },
+    {
+      "id": "olly-period-hero",
+      "name": "OLLY Period Hero",
+      "brand": "OLLY",
+      "price": 15,
+      "currency": "GBP",
+      "image": "individual_photos/OLLY_Period_Hero.png",
+      "category": "cycle support",
+      "goals": [
+        "hormone",
+        "cycle",
+        "PMS",
+        "women's wellbeing"
+      ],
+      "description": "Chasteberry, B6, and calcium for cycle support.",
+      "why_included": "PMS/cycle-support gummy with chasteberry, vitamin B6, and calcium.",
+      "source_url": "https://www.olly.com/products/period-hero?srsltid=AfmBOooq6XkYxAlIZkukgodK77JLwupIIh_uAo5WduhYXv9L4rz590DT",
+      "key_ingredients": [
+        "chasteberry",
+        "vitamin B6",
+        "calcium"
+      ],
+      "sensitivities": [
+        "gelatin",
+        "chasteberry",
+        "women's health supplement sensitivity"
+      ],
+      "routine_note": "2 gummies daily.",
+      "routine_time": [
+        "morning"
+      ],
+      "bundle_ids": [
+        "hormone"
+      ]
+    },
+    {
+      "id": "liv-sugar-free",
+      "name": "Liquid I.V. Sugar-Free Hydration Multiplier",
+      "brand": "Liquid I.V.",
+      "price": 25,
+      "currency": "GBP",
+      "image": "individual_photos/Liquid I.V. Hydration Multiplier.png",
+      "category": "hydration",
+      "goals": [
+        "hydration",
+        "skin",
+        "stress",
+        "low sugar",
+        "daily ritual"
+      ],
+      "description": "Lower-sugar electrolytes with vitamin C and B vitamins.",
+      "why_included": "Lower-sugar hydration option with sodium, potassium, vitamin C, and B vitamins; used for skin/glow customers and caffeine-free stress routines.",
+      "source_url": "https://www.liquid-iv.com/products/lemon-lime-hydration-multiplier-sugar-free?Flavor=Lemon+Lime&Size=14PK&selling_plan=21425094692",
+      "key_ingredients": [
+        "sodium",
+        "potassium",
+        "magnesium",
+        "calcium",
+        "vitamin C",
+        "B vitamins"
+      ],
+      "sensitivities": [
+        "sweetener sensitivity",
+        "electrolyte / sodium considerations"
+      ],
+      "routine_note": "Mix 1 stick with 500 ml water.",
+      "routine_time": [
+        "afternoon",
+        "evening"
+      ],
+      "bundle_ids": [
+        "skin",
+        "stress"
+      ]
+    },
+    {
+      "id": "liv-energy",
+      "name": "Liquid I.V. Hydration Multiplier + Energy",
+      "brand": "Liquid I.V.",
+      "price": 25,
+      "currency": "GBP",
+      "image": "individual_photos/Liquid I.V. Hydration Multiplier + Energy.png",
+      "category": "hydration + energy",
+      "goals": [
+        "hydration",
+        "energy",
+        "focus",
+        "work",
+        "study"
+      ],
+      "description": "Hydration with natural caffeine for alertness.",
+      "why_included": "Hydration + natural caffeine to support memory and alertness.",
+      "source_url": "https://www.liquid-iv.com/products/yuzu-pineapple-hydration-multiplier-energy?Flavor=Yuzu+Pineapple&Size=14PK&selling_plan=21425094692",
+      "key_ingredients": [
+        "caffeine",
+        "matcha",
+        "guayusa",
+        "electrolytes",
+        "sodium",
+        "potassium"
+      ],
+      "sensitivities": [
+        "caffeine",
+        "stimulant-style ingredients",
+        "electrolyte / sodium considerations"
+      ],
+      "routine_note": "Mix 1 stick with 500 ml water. Best kept earlier in the day.",
+      "routine_time": [
+        "early afternoon"
+      ],
+      "bundle_ids": [
+        "energy"
+      ]
+    },
+    {
+      "id": "liv-immune",
+      "name": "Liquid I.V. Hydration Multiplier + Immune Support",
+      "brand": "Liquid I.V.",
+      "price": 25,
+      "currency": "GBP",
+      "image": "individual_photos/Liquid I.V. Hydration Multiplier + Immune Support.png",
+      "category": "hydration + immune support",
+      "goals": [
+        "hydration",
+        "immune support",
+        "hair",
+        "hormone",
+        "daily routine"
+      ],
+      "description": "Hydration plus zinc and immune-support nutrients.",
+      "why_included": "Hydration + immune-support layer; product listings describe hydration plus zinc and 9 vitamins and immune-support nutrients for everyday wellness.",
+      "source_url": "https://www.liquid-iv.com/products/tangerine-hydration-multiplier-immune?Flavor=Tangerine&Size=14PK&selling_plan=21425094692",
+      "key_ingredients": [
+        "electrolytes",
+        "sodium",
+        "potassium",
+        "vitamin C",
+        "zinc",
+        "immune-support ingredients"
+      ],
+      "sensitivities": [
+        "electrolyte / sodium considerations"
+      ],
+      "routine_note": "Mix 1 stick with 500 ml water.",
+      "routine_time": [
+        "afternoon"
+      ],
+      "bundle_ids": [
+        "hair",
+        "hormone"
+      ]
+    }
+  ]
+}

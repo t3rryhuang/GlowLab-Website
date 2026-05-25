@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-05-17",
+  "source_files_used": [
+    "quiz.js",
+    "basket.js",
+    "index.html",
+    "Bundle_details.xlsx",
+    "ingredients_review.xlsx",
+    "GlowLab_Platform_Proposal.pdf"
+  ],
+  "notes": [
+    "Product and bundle image paths are included, but image files themselves are not included in this package.",
+    "Prices are taken from basket.js.",
+    "Product URLs and expanded descriptions are taken from Bundle_details.xlsx.",
+    "Sensitivity warnings are taken from ingredients_review.xlsx and quiz.js.",
+    "The backend falls back to a non-Gemini response if GEMINI_API_KEY is missing."
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "general_disclaimer": "GlowLab can help users compare wellness routines and product information, but it does not diagnose conditions, replace professional medical advice, or guarantee outcomes.",
+  "always_say_for_sensitive_contexts": "Please check the product label and speak to a qualified healthcare professional before using supplements, especially if you are pregnant, breastfeeding, taking medication, under 18, have allergies, or are managing a medical condition.",
+  "sensitive_context_triggers": [
+    "pregnant",
+    "pregnancy",
+    "breastfeeding",
+    "breast feeding",
+    "nursing",
+    "medication",
+    "medicine",
+    "prescription",
+    "antidepressant",
+    "SSRI",
+    "blood pressure",
+    "diabetes",
+    "thyroid",
+    "medical condition",
+    "doctor",
+    "diagnose",
+    "allergy",
+    "allergic",
+    "fish",
+    "collagen",
+    "gelatin",
+    "vegan",
+    "vegetarian",
+    "caffeine",
+    "melatonin",
+    "under 18",
+    "child",
+    "teen",
+    "teenager"
+  ],
+  "do_not": [
+    "Do not diagnose conditions.",
+    "Do not claim that a product cures or treats disease.",
+    "Do not guarantee specific hair, skin, energy, sleep, or hormone outcomes.",
+    "Do not invent ingredients, prices, product benefits, or scientific claims.",
+    "Do not tell users to stop or change medication.",
+    "Do not state that a product is safe for everyone."
+  ],
+  "allowed": [
+    "Recommend from the provided GlowLab products and bundles only.",
+    "Explain why a bundle matches the user's stated goal using provided product data.",
+    "Give routine timing based on the provided morning/afternoon/evening routines.",
+    "Point out sensitivities and label checks based on the provided safety notes.",
+    "Ask a follow-up question when there is not enough information."
+  ],
+  "bundle_specific": {
+    "hair": {
+      "heads_up": "This routine may not be suitable for customers avoiding animal-derived ingredients or marine collagen. Please check each product label before purchase, especially if you have fish, collagen, gelatin, or botanical sensitivities.",
+      "ingredients_to_review": [
+        "Nutrafol Women Hair Growth Nutraceutical: marine collagen peptides, possible fish-derived collagen concern, ashwagandha, saw palmetto, curcumin.",
+        "OLLY Women's Multi: animal gelatin.",
+        "Liquid I.V. Hydration Multiplier + Immune Support: electrolytes, sodium, potassium, vitamin C, zinc, immune-support ingredients."
+      ]
+    },
+    "skin": {
+      "heads_up": "This routine includes beauty and supplement products that may contain animal-derived ingredients. Please review the label if you avoid gelatin, collagen, or have sensitivities to skin-support supplements.",
+      "ingredients_to_review": [
+        "Nutrafol Clear Skin Nutraceutical: botanical / internal skin-support blend.",
+        "OLLY Glowing Skin: gelatin, collagen peptides.",
+        "Liquid I.V. Sugar-Free Hydration Multiplier: sodium, potassium, magnesium, calcium, possible sweetener sensitivity."
+      ]
+    },
+    "stress": {
+      "heads_up": "This routine includes stress-support ingredients and gummies that may not suit every dietary preference. Please check labels if you avoid gelatin or are sensitive to adaptogens, botanicals, or calming ingredients.",
+      "ingredients_to_review": [
+        "Nutrafol Stress Adaptogen Booster: ashwagandha, adaptogen blend.",
+        "OLLY Goodbye Stress: gelatin, GABA, L-theanine, lemon balm.",
+        "Liquid I.V. Sugar-Free Hydration Multiplier: sodium, potassium, magnesium, calcium, possible sweetener sensitivity."
+      ]
+    },
+    "energy": {
+      "heads_up": "This routine includes energy-support products. Please review before purchase if you avoid caffeine, gelatin, or stimulant-style ingredients.",
+      "ingredients_to_review": [
+        "Nutrafol B-Energized Booster: B vitamins.",
+        "OLLY Extra Strength Daily Energy: gelatin, B vitamins.",
+        "Liquid I.V. Hydration Multiplier + Energy: caffeine, matcha, guayusa, electrolytes, sodium, potassium."
+      ]
+    },
+    "hormone": {
+      "heads_up": "This routine is designed around cycle or hormone-related wellbeing and may include animal-derived or botanical ingredients. Please check labels carefully if you avoid collagen, gelatin, or have sensitivities related to women's health supplements.",
+      "ingredients_to_review": [
+        "Nutrafol Women's Balance: marine collagen peptides, possible fish-derived collagen concern.",
+        "OLLY Period Hero: gelatin, chasteberry, vitamin B6, calcium.",
+        "Liquid I.V. Hydration Multiplier + Immune Support: electrolytes, vitamin C, zinc, immune-support ingredients."
+      ]
+    }
+  }
+}

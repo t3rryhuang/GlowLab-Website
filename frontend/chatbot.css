@@ -1,0 +1,197 @@
+:root {
+  --gl-purple: var(--purple, #9F7AEA);
+  --gl-purple-deep: var(--purple-deep, #6D4FC2);
+  --gl-purple-soft: var(--purple-soft, #EBE3FB);
+  --gl-bg: var(--bg, #FAFAF9);
+  --gl-ink: var(--ink, #1A1A2E);
+  --gl-line: var(--line, #E9E5DE);
+}
+
+.gl-chatbot {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  color: var(--gl-ink);
+}
+
+.gl-chatbot-toggle {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 18px;
+  background: var(--gl-purple);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 16px 40px rgba(26, 26, 46, 0.18);
+  cursor: pointer;
+}
+
+.gl-chatbot-panel {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 58px;
+  width: min(390px, calc(100vw - 32px));
+  max-height: min(640px, calc(100vh - 110px));
+  background: #fff;
+  border: 1px solid var(--gl-line);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(26, 26, 46, 0.18);
+  overflow: hidden;
+}
+
+.gl-chatbot-panel.is-open {
+  display: flex;
+  flex-direction: column;
+}
+
+.gl-chatbot-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 14px;
+  background: linear-gradient(135deg, var(--gl-purple-soft), #fff);
+  border-bottom: 1px solid var(--gl-line);
+}
+
+.gl-chatbot-head strong {
+  display: block;
+  font-size: 16px;
+}
+
+.gl-chatbot-head span {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #5d5d70;
+}
+
+#gl-chatbot-close {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.gl-chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: var(--gl-bg);
+}
+
+.gl-chatbot-msg {
+  max-width: 86%;
+  margin: 0 0 10px;
+  padding: 11px 13px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.gl-chatbot-msg-user {
+  margin-left: auto;
+  background: var(--gl-purple);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.gl-chatbot-msg-bot {
+  margin-right: auto;
+  background: #fff;
+  border: 1px solid var(--gl-line);
+  border-bottom-left-radius: 6px;
+}
+
+.gl-chatbot-quick {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border-top: 1px solid var(--gl-line);
+  background: #fff;
+}
+
+.gl-chatbot-quick button {
+  white-space: nowrap;
+  border: 1px solid var(--gl-line);
+  border-radius: 999px;
+  background: #fff;
+  padding: 7px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.gl-chatbot-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--gl-line);
+  background: #fff;
+}
+
+.gl-chatbot-form input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--gl-line);
+  border-radius: 999px;
+  padding: 11px 13px;
+  font-size: 14px;
+}
+
+.gl-chatbot-form button,
+.gl-chatbot-card-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 14px;
+  background: var(--gl-purple-deep);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gl-chatbot-card {
+  margin: 12px 0 14px;
+  background: #fff;
+  border: 1px solid var(--gl-line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.gl-chatbot-card-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+}
+
+.gl-chatbot-card-body {
+  padding: 13px;
+}
+
+.gl-chatbot-card h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.gl-chatbot-card p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #55556a;
+}
+
+@media (max-width: 560px) {
+  .gl-chatbot {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .gl-chatbot-panel {
+    right: -8px;
+  }
+}

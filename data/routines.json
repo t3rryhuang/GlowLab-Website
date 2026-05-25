@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "routines": {
+    "hair": {
+      "bundle_name": "Stronger Hair & Nails",
+      "tagline": "Hair + nutrition + hydration, kept simple.",
+      "steps": [
+        {
+          "time": "Morning",
+          "instruction": "OLLY Women's Multi — 2 gummies daily."
+        },
+        {
+          "time": "Afternoon",
+          "instruction": "Liquid I.V. Hydration Multiplier + Immune Support — mix 1 stick with 500 ml water."
+        },
+        {
+          "time": "Evening",
+          "instruction": "Nutrafol Women Hair Growth Nutraceutical — 4 capsules once daily with a meal."
+        }
+      ]
+    },
+    "skin": {
+      "bundle_name": "Clear Glowing Skin",
+      "tagline": "Inside-out glow, made simple.",
+      "steps": [
+        {
+          "time": "Morning",
+          "instruction": "Nutrafol Clear Skin Nutraceutical — 4 capsules once daily with a meal."
+        },
+        {
+          "time": "Afternoon",
+          "instruction": "Liquid I.V. Sugar-Free Hydration Multiplier — mix 1 stick with 500 ml water."
+        },
+        {
+          "time": "Evening",
+          "instruction": "OLLY Glowing Skin — 2 gummies daily."
+        }
+      ]
+    },
+    "stress": {
+      "bundle_name": "Sleep & Stress Relief",
+      "tagline": "Calm support, without overcomplicating bedtime.",
+      "steps": [
+        {
+          "time": "Morning",
+          "instruction": "Nutrafol Stress Adaptogen Booster — 2 capsules once daily with a meal."
+        },
+        {
+          "time": "Afternoon",
+          "instruction": "OLLY Goodbye Stress — 2 gummies daily."
+        },
+        {
+          "time": "Evening",
+          "instruction": "Liquid I.V. Sugar-Free Hydration Multiplier — mix 1 stick with 500 ml water."
+        }
+      ]
+    },
+    "energy": {
+      "bundle_name": "Daily Energy & Focus",
+      "tagline": "Morning momentum, steady focus.",
+      "steps": [
+        {
+          "time": "Morning",
+          "instruction": "Nutrafol B-Energized Booster — 1 capsule once daily with a meal."
+        },
+        {
+          "time": "Morning",
+          "instruction": "OLLY Extra Strength Daily Energy — 2 gummies daily."
+        },
+        {
+          "time": "Early afternoon",
+          "instruction": "Liquid I.V. Hydration Multiplier + Energy — mix 1 stick with 500 ml water."
+        },
+        {
+          "time": "Evening",
+          "instruction": "No evening step — keep this routine earlier in the day."
+        }
+      ]
+    },
+    "hormone": {
+      "bundle_name": "Women's Hormone Health",
+      "tagline": "Cycle support, structured daily.",
+      "steps": [
+        {
+          "time": "Morning",
+          "instruction": "OLLY Period Hero — 2 gummies daily."
+        },
+        {
+          "time": "Afternoon",
+          "instruction": "Liquid I.V. Hydration Multiplier + Immune Support — mix 1 stick with 500 ml water."
+        },
+        {
+          "time": "Evening",
+          "instruction": "Nutrafol Women's Balance — 4 capsules once daily with a meal."
+        }
+      ]
+    }
+  }
+}

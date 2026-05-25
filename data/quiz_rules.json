@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "score_keys": [
+    "hair",
+    "skin",
+    "stress",
+    "energy",
+    "hormone"
+  ],
+  "tie_breaker": "If two or more bundles tie, choose the tied bundle that received points from Question 1.",
+  "bundle_mapping": {
+    "hair": "Stronger Hair & Nails",
+    "skin": "Clear Glowing Skin",
+    "stress": "Sleep & Stress Relief",
+    "energy": "Daily Energy & Focus",
+    "hormone": "Women's Hormone Health"
+  },
+  "questions": [
+    {
+      "id": "target_outcome",
+      "label": "Question 1 — Target outcome",
+      "title": "What do you want your routine to help with most?",
+      "subtitle": "Choose the outcome that matters most for your next 4-week routine.",
+      "options": [
+        {
+          "id": "q1_hair",
+          "title": "Feel more confident in my hair and nails",
+          "description": "Strength, shedding, and everyday hair wellness.",
+          "scores": {
+            "hair": 7
+          }
+        },
+        {
+          "id": "q1_skin",
+          "title": "Get a fresher, clearer-looking complexion",
+          "description": "Glow, clarity, and skin-from-within support.",
+          "scores": {
+            "skin": 7
+          }
+        },
+        {
+          "id": "q1_stress",
+          "title": "Feel calmer and less mentally overloaded",
+          "description": "Stress, calm, and a gentler daily reset.",
+          "scores": {
+            "stress": 7
+          }
+        },
+        {
+          "id": "q1_energy",
+          "title": "Stay energised through work or study days",
+          "description": "Focus, momentum, and functional hydration.",
+          "scores": {
+            "energy": 7
+          }
+        },
+        {
+          "id": "q1_hormone",
+          "title": "Support my body through cycle or hormone changes",
+          "description": "Cycle, life-stage, and women's wellbeing.",
+          "scores": {
+            "hormone": 7
+          }
+        }
+      ]
+    },
+    {
+      "id": "main_concern",
+      "label": "Question 2 — Main concern",
+      "title": "What feels most difficult to manage right now?",
+      "subtitle": "Choose the issue that best explains why you want support.",
+      "options": [
+        {
+          "id": "q2_consistency",
+          "title": "Keeping a consistent routine",
+          "description": "I need structure more than a specific concern.",
+          "scores": {}
+        },
+        {
+          "id": "q2_skin_balance",
+          "title": "Skin or body feeling out of balance",
+          "description": "Complexion, texture, or general balance.",
+          "scores": {
+            "skin": 4,
+            "hormone": 2
+          }
+        },
+        {
+          "id": "q2_stress",
+          "title": "Stress affecting how I look or feel",
+          "description": "Pressure shows up in mood, skin, or hair.",
+          "scores": {
+            "stress": 4,
+            "hair": 2,
+            "skin": 2
+          }
+        },
+        {
+          "id": "q2_hair_shedding",
+          "title": "More hair shedding or visible weakness",
+          "description": "Thinning, breakage, or nail concerns.",
+          "scores": {
+            "hair": 4,
+            "hormone": 2
+          }
+        },
+        {
+          "id": "q2_low_energy",
+          "title": "Low energy during the day",
+          "description": "Afternoon slumps or mental fatigue.",
+          "scores": {
+            "energy": 4,
+            "stress": 2
+          }
+        },
+        {
+          "id": "q2_cycle_hormone",
+          "title": "Cycle or hormone changes feeling harder to manage",
+          "description": "PMS, perimenopause, or life-stage shifts.",
+          "scores": {
+            "hormone": 4,
+            "energy": 2
+          }
+        },
+        {
+          "id": "q2_unsure",
+          "title": "I'm not sure where to start",
+          "description": "We'll lean on your primary goal from Q1.",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "lifestyle",
+      "label": "Question 3 — Lifestyle",
+      "title": "Which lifestyle best describes you?",
+      "subtitle": "This helps us make the routine realistic for your day.",
+      "options": [
+        {
+          "id": "q3_desk",
+          "title": "Desk-based work or study",
+          "description": "Long hours sitting, working, studying, or at a screen.",
+          "scores": {
+            "energy": 2,
+            "hair": 1,
+            "stress": 1
+          }
+        },
+        {
+          "id": "q3_beauty",
+          "title": "Beauty & wellness focused",
+          "description": "I build routines around skin, hair, glow, and self-care.",
+          "scores": {
+            "skin": 2,
+            "hair": 1,
+            "hormone": 1
+          }
+        },
+        {
+          "id": "q3_active",
+          "title": "Active & on-the-go",
+          "description": "I move often, exercise regularly, or stay active daily.",
+          "scores": {
+            "energy": 2
+          }
+        },
+        {
+          "id": "q3_busy_stressed",
+          "title": "Busy & stressed",
+          "description": "Full, fast-paced, or mentally demanding days.",
+          "scores": {
+            "stress": 2,
+            "hair": 1,
+            "energy": 1
+          }
+        },
+        {
+          "id": "q3_new_mum",
+          "title": "New mum or caring routine",
+          "description": "Caring responsibilities and limited personal time.",
+          "scores": {
+            "stress": 2,
+            "energy": 1,
+            "hormone": 1
+          }
+        },
+        {
+          "id": "q3_life_stage",
+          "title": "Cycle or life-stage focused",
+          "description": "Cycle, hormone, or life-stage changes shape my wellbeing.",
+          "scores": {
+            "hormone": 2
+          }
+        }
+      ]
+    }
+  ]
+}
