@@ -151,7 +151,17 @@
     document.getElementById("cart-close").addEventListener("click", closeDrawer);
     document.getElementById("cart-checkout").addEventListener("click", function () {
       if (getBasket().length === 0) return;
-      alert("Checkout is a demo for this project site — your basket has been saved locally.");
+      closeDrawer();
+      sessionStorage.removeItem("glowlab-abandon-modal-shown");
+      sessionStorage.removeItem("glowlab-abandon-modal-pending");
+      try {
+        localStorage.removeItem("glowlab-abandon-modal-shown");
+      } catch (e) {}
+      try {
+        localStorage.removeItem("glowlab-abandon-modal-pending");
+      } catch (e) {}
+      sessionStorage.setItem("glowlab-checkout-active", "1");
+      window.location.href = "checkout.html";
     });
   }
 
@@ -329,10 +339,19 @@
     });
   }
 
+  function clearBasket() {
+    saveBasket([]);
+    updateCount();
+    renderDrawer();
+  }
+
   window.GlowLabBasket = {
     add: addItem,
     open: openDrawer,
     getItems: getBasket,
+    clear: clearBasket,
+    formatPrice: formatPrice,
+    total: total,
   };
 
   document.addEventListener("DOMContentLoaded", function () {

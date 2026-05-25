@@ -5,21 +5,31 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI } from "@google/genai";
+import { sendAbandonedCartEmail } from "./email-send.js";
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const SITE_ROOT = path.resolve(__dirname, "..");
 // If you keep /data at project root, this points to ../data from /backend.
-const DATA_DIR = path.resolve(__dirname, "../data");
+const DATA_DIR = path.join(SITE_ROOT, "data");
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
 
 app.use(cors());
-app.use(express.json({ limit: "1mb" }));
-app.use(express.static(path.resolve(__dirname, "../frontend")));
+app.use(express.json({ limit: "8mb" }));
+
+// Block accidental exposure of backend secrets when serving the site root.
+app.use((req, res, next) => {
+  const blocked = ["/backend", "/data"];
+  if (blocked.some((prefix) => req.path === prefix || req.path.startsWith(prefix + "/"))) {
+    return res.status(404).end();
+  }
+  next();
+});
 
 let knowledge;
 
@@ -186,6 +196,66 @@ ${message}
   return response.text || fallbackReply(message, bundle);
 }
 
+const SKIN_ASSESSMENT_FALLBACKS = [
+  "Your skin could use a little extra hydration today.",
+  "You look like you could use a gentle, calming routine today.",
+  "Your complexion looks like it would love some steady daily support.",
+];
+
+function pickSkinFallback() {
+  return SKIN_ASSESSMENT_FALLBACKS[
+    Math.floor(Math.random() * SKIN_ASSESSMENT_FALLBACKS.length)
+  ];
+}
+
+function normalizeSkinOneLiner(text) {
+  let line = String(text || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^["'`]+|["'`]+$/g, "");
+  if (!line) return "";
+  if (!/[.!?]$/.test(line)) line += ".";
+  return line;
+}
+
+async function assessSkinFromPhoto({ imageBase64, mimeType }) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return pickSkinFallback();
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
+  const model = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
+
+  const prompt = `You are a friendly wellness copywriter for GlowLab (a supplement boutique).
+
+Look at this selfie and write exactly ONE short phrase in plain, simple English that will appear immediately before a product routine description.
+
+Rules:
+- Maximum 14 words.
+- Friendly and observational only — not medical advice, not a diagnosis.
+- Do NOT name any products, brands, bundles, or supplements.
+- Must end with the exact words "we recommend" (lowercase "we").
+- Start with "Because" when possible, e.g. "Because your skin looks dry and you seem tired, we recommend"
+- Return only that one phrase, nothing else.`;
+
+  const response = await ai.models.generateContent({
+    model,
+    contents: [
+      {
+        role: "user",
+        parts: [
+          { inlineData: { mimeType, data: imageBase64 } },
+          { text: prompt },
+        ],
+      },
+    ],
+  });
+
+  const line = normalizeSkinOneLiner(response.text);
+  return line || pickSkinFallback();
+}
+
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "glowlab-chatbot" });
 });
@@ -205,6 +275,53 @@ app.post("/api/recommend", (req, res) => {
     recommendedBundle: bundle,
     products: bundle ? bundle.products.map((id) => knowledge.productById[id]).filter(Boolean) : []
   });
+});
+
+app.post("/api/skin-assessment", async (req, res) => {
+  try {
+    const { image, mimeType } = req.body || {};
+    if (!image || typeof image !== "string") {
+      return res.status(400).json({ error: "Image is required." });
+    }
+
+    const cleaned = image.replace(/^data:[^;]+;base64,/, "").trim();
+    if (!cleaned) {
+      return res.status(400).json({ error: "Invalid image data." });
+    }
+
+    const oneLiner = await assessSkinFromPhoto({
+      imageBase64: cleaned,
+      mimeType: mimeType || "image/jpeg",
+    });
+
+    res.json({ oneLiner });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      oneLiner: pickSkinFallback(),
+      error: "SKIN_ASSESSMENT_ERROR",
+    });
+  }
+});
+
+app.post("/api/abandoned-cart", async (req, res) => {
+  try {
+    const { items } = req.body || {};
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: "Basket items are required." });
+    }
+
+    const origin = req.get("origin") || `http://localhost:${port}`;
+    const result = await sendAbandonedCartEmail({
+      items,
+      checkoutUrl: `${origin}/checkout.html`,
+    });
+
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "ABANDONED_CART_EMAIL_FAILED" });
+  }
 });
 
 app.post("/api/chat", async (req, res) => {
@@ -237,7 +354,22 @@ app.post("/api/chat", async (req, res) => {
 
 await loadKnowledge();
 
-app.listen(port, () => {
+app.use(express.static(SITE_ROOT, { index: "index.html", extensions: ["html"] }));
+
+const server = app.listen(port, () => {
   console.log(`GlowLab chatbot backend running on http://localhost:${port}`);
-  console.log(`Open widget test page at http://localhost:${port}/test-chatbot.html`);
+  console.log(`Website: http://localhost:${port}/index.html`);
+  console.log(`Chatbot test: http://localhost:${port}/frontend/test-chatbot.html`);
+});
+
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(
+      `\nPort ${port} is still in use after prestart cleanup.\n` +
+        `Run:  npm run stop\n` +
+        `Or:   lsof -ti :${port} | xargs kill -9\n`
+    );
+    process.exit(1);
+  }
+  throw err;
 });

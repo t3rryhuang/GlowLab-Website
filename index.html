@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="glowlab.css">
+<link rel="stylesheet" href="frontend/chatbot.css">
 </head>
 <body>
 <nav class="nav"><div class="nav-inner">
@@ -32,8 +33,9 @@
 <a href="#bundles" class="btn btn-secondary btn-lg">Explore bundles</a>
 </div>
 </div>
-<div class="hero-image"><img src="images/hero-liquid-iv-sunset.jpg" alt="Woman holding Liquid I.V. Hydration Multiplier at sunset by the ocean"></div>
+<div class="hero-image"><img data-hero-image src="images/hero-liquid-iv-sunset.jpg" alt="Woman holding Liquid I.V. Hydration Multiplier at sunset by the ocean"></div>
 </div>
+<section class="section page suggested-section" id="suggested-for-you" aria-live="polite"></section>
 <div class="pillars">
 <div class="pillar"><div class="pillar-icon" style="background:var(--purple-soft)">✦</div><h3>Curated bundles</h3><p>Three complementary products per goal.</p></div>
 <div class="pillar"><div class="pillar-icon" style="background:var(--pink-soft)">◇</div><h3>Trusted brands</h3><p>Nutrafol, OLLY, and Liquid I.V.</p></div>
@@ -69,10 +71,14 @@
 </section>
 </main>
 <footer class="footer"><div class="footer-inner">
-<div class="footer-brand"><div class="logo">Glow<span class="logo-dot">·</span>Lab</div><p>Curated wellness from Nutrafol, OLLY, and Liquid I.V.</p></div>
+<div class="footer-brand"><div class="logo">Glow<span class="logo-dot">·</span>Lab</div><p>Science-backed supplements for every stage of your wellness journey.</p></div>
 <div class="footer-col"><h4>Explore</h4><ul><li><a href="index.html#bundles">Bundles</a></li>
 <li><a href="community.html">Community</a></li><li><a href="index.html#shop">Shop</a></li><li><a href="quiz.html">Routine quiz</a></li></ul></div>
 </div><div class="footer-bottom"><span>© 2026 GlowLab</span>
 <span>Imperial College London — Group Project</span></div></footer>
 <script src="basket.js"></script>
-</body></html>
+<script src="abandon-modal.js"></script>
+<script src="accounts.js"></script>
+<script src="frontend/chatbot.js"></script>
+</body>
+</html>

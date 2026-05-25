@@ -1,13 +1,17 @@
-Add this to every page where you want the chatbot.
+Add this to every GlowLab page where you want the chatbot.
 
 In the <head>, after glowlab.css:
-<link rel="stylesheet" href="chatbot.css">
+<link rel="stylesheet" href="frontend/chatbot.css">
 
 At the end of <body>, after basket.js:
-<script src="chatbot.js"></script>
+<script src="frontend/chatbot.js"></script>
 
-If your backend is not running on http://localhost:3000, set this before chatbot.js:
+Run the site with the chatbot API (from /backend):
+  cd backend && npm install && npm start
+Then open http://localhost:3000/index.html
+
+If the API runs on another host, set this before chatbot.js:
 <script>
   window.GLOWLAB_CHATBOT_API = "https://YOUR_BACKEND_URL";
 </script>
-<script src="chatbot.js"></script>
+<script src="frontend/chatbot.js"></script>

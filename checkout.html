@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GlowLab — Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="glowlab.css">
+  <link rel="stylesheet" href="frontend/chatbot.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Glow<span class="logo-dot">·</span>Lab</a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#shop">Shop</a>
+      <a class="nav-link" href="index.html#bundles">Bundles</a>
+      <a class="nav-link" href="community.html">Community</a>
+      <a class="nav-link" href="quiz.html">Quiz</a>
+    </div>
+    <div class="nav-right">
+      <a href="quiz.html" class="btn btn-sm btn-primary">Take the quiz</a>
+    </div>
+  </div>
+</nav>
+<main class="page-fade checkout-page">
+  <div class="page checkout-layout">
+    <a href="index.html" class="checkout-back" id="checkout-back">← Back to shop</a>
+    <div class="checkout-head">
+      <p class="eyebrow">Checkout</p>
+      <h1 class="quiz-title">Almost <em>there</em></h1>
+      <p class="checkout-lead">Review your ritual and place your order. This is a demo checkout — no real payment is taken.</p>
+    </div>
+    <div class="checkout-grid">
+      <section class="checkout-panel" id="checkout-summary" aria-live="polite"></section>
+      <section class="checkout-panel checkout-panel-form">
+        <h2>Details</h2>
+        <form id="checkout-form" class="checkout-form">
+          <label class="checkout-field">
+            <span>Full name</span>
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+          <label class="checkout-field">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label class="checkout-field">
+            <span>Delivery address</span>
+            <textarea name="address" rows="3" placeholder="Street, city, postcode" required></textarea>
+          </label>
+          <div class="checkout-promo-note" id="checkout-promo-note" hidden>
+            <strong>10% off</strong> with code <code>GLOW10</code> — use within 24 hours if you leave and come back.
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg checkout-pay" id="checkout-pay">
+            Place order (demo)
+          </button>
+        </form>
+        <p class="checkout-status" id="checkout-status" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">Glow<span class="logo-dot">·</span>Lab</div>
+      <p>Science-backed supplements for every stage of your wellness journey.</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 GlowLab</span><span>Imperial College London — Group Project</span></div>
+</footer>
+<script src="basket.js"></script>
+<script src="abandon-modal.js"></script>
+<script src="accounts.js"></script>
+<script src="checkout.js"></script>
+<script src="frontend/chatbot.js"></script>
+</body>
+</html>

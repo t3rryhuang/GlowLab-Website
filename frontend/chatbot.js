@@ -1,5 +1,24 @@
 (function () {
-  var API_BASE = window.GLOWLAB_CHATBOT_API || "http://localhost:3000";
+  function getApiBase() {
+    if (window.GLOWLAB_CHATBOT_API != null && window.GLOWLAB_CHATBOT_API !== "") {
+      return window.GLOWLAB_CHATBOT_API;
+    }
+    if (location.protocol === "file:") {
+      return "http://localhost:3000";
+    }
+    if (
+      location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1"
+    ) {
+      if (location.port === "3000") {
+        return "";
+      }
+      return "http://localhost:3000";
+    }
+    return "";
+  }
+
+  var API_BASE = getApiBase();
 
   function el(tag, className, text) {
     var node = document.createElement(tag);

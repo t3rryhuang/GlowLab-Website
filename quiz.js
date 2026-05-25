@@ -185,9 +185,83 @@ const QUIZ = [
   },
 ];
 
+const PHOTO_STEP = QUIZ.length;
+
 let step = 0;
 let answers = [];
 let scores = { hair: 0, skin: 0, stress: 0, energy: 0, hormone: 0 };
+let skinOneLiner = null;
+let photoPreviewUrl = null;
+let activePhotoStream = null;
+
+function getApiBase() {
+  if (window.GLOWLAB_CHATBOT_API != null && window.GLOWLAB_CHATBOT_API !== "") {
+    return window.GLOWLAB_CHATBOT_API;
+  }
+  if (location.protocol === "file:") {
+    return "http://localhost:3000";
+  }
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    if (location.port === "3000") {
+      return "";
+    }
+    return "http://localhost:3000";
+  }
+  return "";
+}
+
+function stopPhotoStream() {
+  if (activePhotoStream) {
+    activePhotoStream.getTracks().forEach(function (track) {
+      track.stop();
+    });
+    activePhotoStream = null;
+  }
+}
+
+function revokePhotoPreview() {
+  stopPhotoStream();
+  if (photoPreviewUrl) {
+    URL.revokeObjectURL(photoPreviewUrl);
+    photoPreviewUrl = null;
+  }
+}
+
+function captureFromVideo(video) {
+  var canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth || 640;
+  canvas.height = video.videoHeight || 480;
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL("image/jpeg", 0.9);
+}
+
+function buildResultSubtitle(explanation) {
+  if (!skinOneLiner) {
+    return explanation;
+  }
+  var lead = skinOneLiner.trim();
+  if (!/[.!?]$/.test(lead)) {
+    lead += ".";
+  }
+  return lead + " " + explanation;
+}
+
+async function requestSkinAssessment(dataUrl) {
+  var res = await fetch(getApiBase() + "/api/skin-assessment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      image: dataUrl,
+      mimeType: (dataUrl.match(/^data:([^;]+);/) || [])[1] || "image/jpeg",
+    }),
+  });
+  var data = await res.json();
+  if (!res.ok && !data.oneLiner) {
+    throw new Error("Skin assessment failed");
+  }
+  return data.oneLiner || null;
+}
 
 function $(sel) {
   return document.querySelector(sel);
@@ -263,10 +337,206 @@ function renderSensitivityReview(bundleId) {
   );
 }
 
+const TOTAL_QUIZ_STEPS = QUIZ.length + 1;
+
+function progressHtml(activeStep) {
+  var html = "";
+  for (var i = 0; i < TOTAL_QUIZ_STEPS; i++) {
+    var cls = "quiz-progress-bar";
+    if (i < activeStep) cls += " done";
+    else if (i === activeStep) cls += " active";
+    html += '<div class="' + cls + '"></div>';
+  }
+  return html;
+}
+
+function renderPhotoStep() {
+  var wrap = $("#quiz-app");
+  wrap.innerHTML =
+    '<div class="quiz-page page-fade"><div class="page quiz-photo-page">' +
+    '<p class="quiz-step-label">Question 4 — Skin snapshot</p>' +
+    '<h1 class="quiz-title">We&rsquo;d like a quick photo to <em>describe</em> your skin</h1>' +
+    '<p class="quiz-sub">Optional — a one-line note appears on your results for fun only. It does <strong>not</strong> change which bundle we match you to.</p>' +
+    '<div class="quiz-photo-card">' +
+    '<ul class="quiz-photo-tips" aria-label="Photo tips">' +
+    '<li><span class="quiz-photo-tip-icon" aria-hidden="true">👓</span><span>Remove your glasses</span></li>' +
+    '<li><span class="quiz-photo-tip-icon" aria-hidden="true">🎀</span><span>Pull back your hair</span></li>' +
+    '<li><span class="quiz-photo-tip-icon" aria-hidden="true">📷</span><span>Face the camera directly</span></li>' +
+    '<li><span class="quiz-photo-tip-icon" aria-hidden="true">🙂</span><span>Keep a neutral expression</span></li>' +
+    "</ul>" +
+    '<div class="quiz-photo-preview" id="quiz-photo-preview">' +
+    '<p class="quiz-photo-placeholder" id="quiz-photo-placeholder">Your webcam preview will appear here</p>' +
+    '<video id="quiz-photo-video" class="quiz-photo-video" autoplay playsinline muted hidden></video>' +
+    '<img id="quiz-photo-img" alt="Your captured selfie" hidden />' +
+    "</div>" +
+    '<label class="quiz-photo-consent">' +
+    '<input type="checkbox" id="quiz-photo-consent" />' +
+    "<span>If you use your webcam, a captured frame is sent to our server only to generate a short line for your results. It is not stored or used for product matching.</span>" +
+    "</label>" +
+    '<div class="quiz-photo-actions">' +
+    '<button type="button" class="btn btn-secondary" id="quiz-photo-start" disabled>Start webcam</button>' +
+    '<button type="button" class="btn btn-secondary" id="quiz-photo-capture" disabled>Take photo</button>' +
+    '<button type="button" class="btn btn-ghost" id="quiz-photo-retake" hidden>Retake</button>' +
+    '<button type="button" class="btn btn-ghost" id="quiz-photo-skip">Skip this step</button>' +
+    "</div>" +
+    '<p class="quiz-photo-status" id="quiz-photo-status" role="status" aria-live="polite"></p>' +
+    "</div>" +
+    '<div class="quiz-foot">' +
+    '<button type="button" class="quiz-back" id="quiz-back">← Back</button>' +
+    '<button type="button" class="btn btn-primary" id="quiz-photo-continue" disabled>See my match</button>' +
+    "</div></div></div>";
+
+  var page = wrap.querySelector(".page");
+  var prog = document.createElement("div");
+  prog.className = "quiz-progress";
+  prog.innerHTML = progressHtml(PHOTO_STEP);
+  page.insertBefore(prog, page.querySelector(".quiz-title"));
+
+  var captureDataUrl = null;
+  var consent = $("#quiz-photo-consent");
+  var continueBtn = $("#quiz-photo-continue");
+  var status = $("#quiz-photo-status");
+  var previewImg = $("#quiz-photo-img");
+  var video = $("#quiz-photo-video");
+  var placeholder = $("#quiz-photo-placeholder");
+  var startBtn = $("#quiz-photo-start");
+  var captureBtn = $("#quiz-photo-capture");
+  var retakeBtn = $("#quiz-photo-retake");
+
+  function updateContinue() {
+    continueBtn.disabled = !(captureDataUrl && consent.checked);
+    startBtn.disabled = !consent.checked || !!captureDataUrl;
+  }
+
+  function showLivePreview() {
+    placeholder.hidden = true;
+    previewImg.hidden = true;
+    video.hidden = false;
+    retakeBtn.hidden = true;
+    captureBtn.hidden = false;
+    startBtn.hidden = true;
+  }
+
+  function showCapturedPreview(dataUrl) {
+    stopPhotoStream();
+    video.hidden = true;
+    video.srcObject = null;
+    placeholder.hidden = true;
+    previewImg.src = dataUrl;
+    previewImg.hidden = false;
+    captureBtn.hidden = true;
+    startBtn.hidden = true;
+    retakeBtn.hidden = false;
+  }
+
+  function resetCapture() {
+    captureDataUrl = null;
+    previewImg.hidden = true;
+    previewImg.removeAttribute("src");
+    retakeBtn.hidden = true;
+    captureBtn.hidden = false;
+    captureBtn.disabled = true;
+    startBtn.hidden = false;
+    placeholder.hidden = false;
+    updateContinue();
+  }
+
+  async function startWebcam() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      status.textContent = "Your browser does not support webcam access. Skip this step or try another browser.";
+      return;
+    }
+
+    stopPhotoStream();
+    status.textContent = "Requesting camera access…";
+
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } },
+        audio: false,
+      });
+      activePhotoStream = stream;
+      video.srcObject = stream;
+      await video.play();
+      showLivePreview();
+      captureBtn.disabled = false;
+      status.textContent = "Position your face in the frame, then tap Take photo.";
+    } catch (err) {
+      status.textContent = "Couldn't access your webcam. Check browser permissions or skip this step.";
+    }
+  }
+
+  consent.addEventListener("change", updateContinue);
+
+  startBtn.addEventListener("click", function () {
+    if (!consent.checked) {
+      return;
+    }
+    startWebcam();
+  });
+
+  captureBtn.addEventListener("click", function () {
+    if (!video.srcObject || video.readyState < 2) {
+      status.textContent = "Wait for the camera to load, then try again.";
+      return;
+    }
+    captureDataUrl = captureFromVideo(video);
+    showCapturedPreview(captureDataUrl);
+    status.textContent = "Photo captured — continue when you're ready.";
+    updateContinue();
+  });
+
+  retakeBtn.addEventListener("click", function () {
+    resetCapture();
+    status.textContent = "";
+    if (consent.checked) {
+      startWebcam();
+    }
+  });
+
+  $("#quiz-back").onclick = function () {
+    revokePhotoPreview();
+    step = PHOTO_STEP - 1;
+    renderQuiz();
+  };
+
+  $("#quiz-photo-skip").onclick = function () {
+    skinOneLiner = null;
+    revokePhotoPreview();
+    step = PHOTO_STEP + 1;
+    renderResults();
+  };
+
+  continueBtn.onclick = async function () {
+    if (!captureDataUrl || !consent.checked) {
+      return;
+    }
+    continueBtn.disabled = true;
+    status.textContent = "Analysing your photo…";
+    try {
+      skinOneLiner = await requestSkinAssessment(captureDataUrl);
+    } catch (err) {
+      skinOneLiner = null;
+      status.textContent = "We couldn't analyse that photo — showing your match without it.";
+      await new Promise(function (r) {
+        setTimeout(r, 900);
+      });
+    }
+    revokePhotoPreview();
+    step = PHOTO_STEP + 1;
+    renderResults();
+  };
+
+  updateContinue();
+}
 
 function renderQuiz() {
   var wrap = $("#quiz-app");
-  if (step >= QUIZ.length) {
+  if (step === PHOTO_STEP) {
+    renderPhotoStep();
+    return;
+  }
+  if (step > PHOTO_STEP) {
     renderResults();
     return;
   }
@@ -285,10 +555,7 @@ function renderQuiz() {
   var prog = document.createElement("div");
   prog.className = "quiz-progress";
   prog.id = "quiz-progress";
-  prog.innerHTML = QUIZ.map(function (_, i) {
-    var cls = i < step ? "quiz-progress-bar done" : i === step ? "quiz-progress-bar active" : "quiz-progress-bar";
-    return '<div class="' + cls + '"></div>';
-  }).join("");
+  prog.innerHTML = progressHtml(step);
   page.insertBefore(prog, page.querySelector(".quiz-title"));
   var opts = $("#quiz-options");
   q.options.forEach(function (opt, idx) {
@@ -322,7 +589,7 @@ function renderResults() {
     '<div class="page page-fade" style="padding:40px 0 100px">' +
     '<div class="results-hero"><span class="pill">Your match</span>' +
     '<h1 class="quiz-title">' + bundle.name + '</h1>' +
-    '<p class="quiz-sub">' + bundle.explanation + '</p>' +
+    '<p class="quiz-sub" id="result-subtitle">' + escapeHtml(buildResultSubtitle(bundle.explanation)) + '</p>' +
     '<p id="result-tagline" style="font-size:26px;color:var(--purple-deep);margin-top:8px;font-family:\'Instrument Serif\',Georgia,serif"></p>' +
     '<div style="max-width:640px;margin:32px auto 0;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-hover)">' +
     '<img src="' + bundle.img + '" alt="' + bundle.name + '" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover">' +
@@ -369,7 +636,11 @@ function renderResults() {
     }
   };
   $("#retake").onclick = function () {
-    step = 0; answers = []; scores = { hair: 0, skin: 0, stress: 0, energy: 0, hormone: 0 };
+    step = 0;
+    answers = [];
+    scores = { hair: 0, skin: 0, stress: 0, energy: 0, hormone: 0 };
+    skinOneLiner = null;
+    revokePhotoPreview();
     renderQuiz();
   };
 }
