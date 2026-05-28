@@ -1,6 +1,6 @@
 # GlowLab: Online Retail Experience
 
-**BUSI70265 (2526) Retail & Marketing Analytics** · Imperial College Business School  
+**BUSI70265_2526 Retail & Marketing Analytics** · Imperial College Business School  
 **Group coursework, Path 3: AI-driven retail layout (online)**
 
 GlowLab is a prototype **health and wellbeing e-commerce storefront** built for the module’s AI-tool path. The site imagines a curated online retailer, partnered with a Boots-style pharmacy brand (“Roots”), that launches a lifestyle-led supplement line aligned with [Unilever’s health & wellbeing trends](https://www.unilever.com/news/news-search/2022/introducing-our-fastgrowing-health-wellbeing-business/): wellness as a lifestyle goal, benefit-led personalisation, category overlap (supplements, beauty, hydration) and community-driven routines.
